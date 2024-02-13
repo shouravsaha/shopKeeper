@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.index');
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+Route::get('/add_product', function(){
+    return view('add_product');
+})->name('product');
+route::get('/', function(){
+    return view('index');
 });
