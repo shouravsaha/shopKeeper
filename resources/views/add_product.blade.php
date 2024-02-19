@@ -47,6 +47,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="layout-static.html">Add Product</a>
+                                    <a class="nav-link" href="{{ route('home') }}">View Product</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>
@@ -63,25 +64,47 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4"></div>
-                        <form>
-                            <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                            </div>
-                            <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1">
-                            </div>
-                            <div class="mb-3 form-check">
-                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                        <div class="col-md-4">
+                            <form class="form-control">
+                                <fieldset>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="control-label mb-2" for="product_name">Product Name</label>
+                                        <div class="mb-2">
+                                            <input id="product_id" name="product_id" placeholder="Product Name" class="form-control input-md" required="" type="text">
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="control-label mb-2" for="product_name">Product Description</label>
+                                        <div class="mb-2">
+                                            <input id="product_name" name="product_name" placeholder="Product Description" class="form-control input-md" required="" type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label mb-2" for="product_name">Product Price</label>
+                                        <div class="mb-2">
+                                            <input id="product_name" name="product_price" placeholder="Product Price" class="form-control input-md" required="" type="text">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label mb-2" for="product_name">Product Stock</label>
+                                        <div class="mb-2">
+                                            <input id="product_name" name="product_stock" placeholder="Product Stock" class="form-control input-md" required="" type="text">
+                                        </div>
+                                    </div>
+                                    <!-- Button -->
+                                    <div class="form-group mb-2">
+                                        <div class="">
+                                            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Button</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                 </main>
             </div>

@@ -22,4 +22,4 @@ Route::get('/add_product', function(){
 })->name('product');
 route::get('/', function(){
     return view('index');
-});
+})->name('home');
