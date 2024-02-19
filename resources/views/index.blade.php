@@ -46,8 +46,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('product') }}">Add Product</a>
-                                    <a class="nav-link" href="{{ route('home') }}">View Product</a>
+                                    <a class="nav-link" href="{{ route('product.create') }}">Add Product</a>
+                                    <a class="nav-link" href="{{ route('product.index') }}">View Product</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>
@@ -93,17 +93,18 @@
                                         </tr>
                                     </tfoot> --}}
                                     <tbody>
+                                    @foreach ($products as $product)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>$100</td>
-                                            <td>10</td>
+                                            <td>{{ $product->name }}</td>
+                                            <td>{{ $product->description }}</td>
+                                            <td>{{ $product->price }}</td>
+                                            <td>{{ $product->stock }}</td>
                                             <td>
                                                 <i class="fas fa-edit edit"></i>
                                                 <i class="fa-solid fa-trash delete"></i>
                                             </td>
                                         </tr>
-
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

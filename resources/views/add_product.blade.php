@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,8 +13,6 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-
-        @yield('navbar')
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
             <!-- Navbar Brand-->
@@ -47,13 +46,12 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="layout-static.html">Add Product</a>
-                                    <a class="nav-link" href="{{ route('home') }}">View Product</a>
+                                    <a class="nav-link" href="{{ route('product.index') }}">View Product</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>
                         </div>
                     </div>
-
                 </nav>
             </div>
 
@@ -65,13 +63,24 @@
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                         <div class="col-md-4">
-                            <form class="form-control">
+                            @if (session()->has('success'))
+                                <p class="bg-success text-white">{{ session()->get('success') }}</p>
+                            @endif
+                            @if ($errors->any())
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            <form class="form-control" action="{{ route('product.store') }}" method="post">
+                            @csrf
                                 <fieldset>
                                     <!-- Text input-->
                                     <div class="form-group">
                                         <label class="control-label mb-2" for="product_name">Product Name</label>
                                         <div class="mb-2">
-                                            <input id="product_id" name="product_id" placeholder="Product Name" class="form-control input-md" required="" type="text">
+                                            <input id="product_name" name="product_name" placeholder="Product Name" class="form-control" required="" type="text">
                                         </div>
                                     </div>
 
@@ -79,27 +88,27 @@
                                     <div class="form-group">
                                         <label class="control-label mb-2" for="product_name">Product Description</label>
                                         <div class="mb-2">
-                                            <input id="product_name" name="product_name" placeholder="Product Description" class="form-control input-md" required="" type="text">
+                                            <textarea name="description" class="form-control" placeholder="Product Description"></textarea>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="control-label mb-2" for="product_name">Product Price</label>
                                         <div class="mb-2">
-                                            <input id="product_name" name="product_price" placeholder="Product Price" class="form-control input-md" required="" type="text">
+                                            <input id="" name="product_price" placeholder="Product Price" class="form-control" required="" type="number">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label mb-2" for="product_name">Product Stock</label>
+                                        <label class="control-label mb-2" for="product_stock">Product Stock</label>
                                         <div class="mb-2">
-                                            <input id="product_name" name="product_stock" placeholder="Product Stock" class="form-control input-md" required="" type="text">
+                                            <input id="product_name" name="product_stock" placeholder="Product Stock" class="form-control" required="" type="number">
                                         </div>
                                     </div>
                                     <!-- Button -->
                                     <div class="form-group mb-2">
                                         <div class="">
-                                            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Button</button>
+                                            <button id="add_product" name="add_product" class="btn btn-primary">Add Product</button>
                                         </div>
                                     </div>
                                 </fieldset>
