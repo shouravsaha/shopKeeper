@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,12 +13,10 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
-
-        @yield('navbar')
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="">Shop Keeper</a>
+            <a class="navbar-brand ps-3" href="{{ url('index') }}">Shop Keeper</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -39,75 +38,81 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Layouts
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ route('product.create') }}">Add Product</a>
+                                    <a class="nav-link" href="layout-static.html">Add Product</a>
                                     <a class="nav-link" href="{{ route('product.index') }}">View Product</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>
                         </div>
                     </div>
-
                 </nav>
             </div>
 
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">Add Product</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-
-                        <div class="card mb-2">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                DataTable Example
-                            </div>
-                            <div class="card-body">
-                                <table /*id="datatablesSimple"*/ class="table table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <th>Description</th>
-                                            <th>Price</th>
-                                            <th>Stock</th>
-                                            <th>Action</th>
-
-                                        </tr>
-                                    </thead>
-                                    {{-- <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> --}}
-                                    <tbody>
-                                    @foreach ($products as $product)
-                                        <tr>
-                                            <td>{{ $product->name }}</td>
-                                            <td>{{ $product->description }}</td>
-                                            <td>{{ $product->price }}</td>
-                                            <td>{{ $product->stock }}</td>
-                                            <td>
-                                                <a href="{{ route('product.edit', $product->id) }}"><i class="fas fa-edit edit"></i></a>
-                                                <i class="fa-solid fa-trash delete"></i>
-                                            </td>
-                                        </tr>
+                        <div class="col-md-4">
+                            @if (session()->has('success'))
+                                <p class="bg-success text-white">{{ session()->get('success') }}</p>
+                            @endif
+                            @if ($errors->any())
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
                                     @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                                </ul>
+                            @endif
+                            <form class="form-control" action="{{ route('product.update', $product->id) }}" method="post">
+                            @csrf
+                                <fieldset>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="control-label mb-2" for="product_name">Product Name</label>
+                                        <div class="mb-2">
+                                            <input id="product_name" name="product_name" placeholder="Product Name" class="form-control" required="" type="text" value="{{ $product->name }}" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="control-label mb-2" for="product_name">Product Description</label>
+                                        <div class="mb-2">
+                                            <textarea name="description" class="form-control" placeholder="Product Description" required>{{ $product->description }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label mb-2" for="product_name">Product Price</label>
+                                        <div class="mb-2">
+                                            <input id="" name="product_price" placeholder="Product Price" class="form-control" required="" type="number" value="{{ $product->price }}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label mb-2" for="product_stock">Product Stock</label>
+                                        <div class="mb-2">
+                                            <input id="product_name" name="product_stock" placeholder="Product Stock" class="form-control" required="" type="number" value="{{ $product->stock }}" required>
+                                        </div>
+                                    </div>
+                                    <!-- Button -->
+                                    <div class="form-group mb-2">
+                                        <div class="">
+                                            <button id="add_product" name="add_product" class="btn btn-primary">Update Product</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
                 </main>

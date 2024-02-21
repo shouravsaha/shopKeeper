@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -39,14 +40,17 @@ class ProductController extends Controller
             'product_stock' => 'required|integer|min:0',
         ]);
 
-        $product = new products();
-        $product->name = $request->input('product_name');
-        $product->description = $request->input('description');
-        $product->price = $request->input('product_price');
-        $product->stock = $request->input('product_stock');
-        $product->save();
+        DB::table('products')
+            ->insert([
+                'name' => $request->product_name,
+                'description' => $request->description,
+                'price' => $request->product_price,
+                'stock' => $request->product_stock,
+            ]);
 
-        return redirect()->back()->with('success', 'Product stored successfully!');
+        return redirect()
+            ->route('product.index')
+            ->with('success', 'Product stored successfully!');
     }
 
     /**
@@ -62,7 +66,8 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = DB::table('products')->find($id);
+        return view('edit_product', ['product' => $product]);
     }
 
     /**
@@ -70,7 +75,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('products')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->product_name,
+                'description' => $request->description,
+                'price' => $request->product_price,
+                'stock' => $request->product_stock,
+
+            ]);
+            return redirect()->route('product.index')->with('success', 'Product updated Successfully');
     }
 
     /**
