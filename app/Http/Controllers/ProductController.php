@@ -94,4 +94,8 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function sale($id){
+        return view('product_sale');
+    }
 }

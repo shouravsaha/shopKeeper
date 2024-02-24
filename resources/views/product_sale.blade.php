@@ -58,7 +58,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Update Product</h1>
+                        <h1 class="mt-4">Product Sale</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
@@ -73,42 +73,20 @@
                                     @endforeach
                                 </ul>
                             @endif
-                            <form class="form-control" action="{{ route('product.update', $product->id) }}" method="post">
+                            <form class="form-control" action="{{ route('product.store') }}" method="post">
                             @csrf
                                 <fieldset>
                                     <!-- Text input-->
                                     <div class="form-group">
-                                        <label class="control-label mb-2" for="product_name">Product Name</label>
+                                        <label class="control-label mb-2" for="product_name">Product Sale</label>
                                         <div class="mb-2">
-                                            <input id="product_name" name="product_name" placeholder="Product Name" class="form-control" required="" type="text" value="{{ $product->name }}" required>
-                                        </div>
-                                    </div>
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                        <label class="control-label mb-2" for="product_name">Product Description</label>
-                                        <div class="mb-2">
-                                            <textarea name="description" class="form-control" placeholder="Product Description" required>{{ $product->description }}</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label mb-2" for="product_name">Product Price</label>
-                                        <div class="mb-2">
-                                            <input id="" name="product_price" placeholder="Product Price" class="form-control" required="" type="number" value="{{ $product->price }}" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label mb-2" for="product_stock">Product Stock</label>
-                                        <div class="mb-2">
-                                            <input id="product_name" name="product_stock" placeholder="Product Stock" class="form-control" required="" type="number" value="{{ $product->stock }}" required>
+                                            <input id="product_name" name="product_sale" placeholder="Product Name" class="form-control" required="" type="text">
                                         </div>
                                     </div>
                                     <!-- Button -->
                                     <div class="form-group mb-2">
                                         <div class="">
-                                            <button id="add_product" name="add_product" class="btn btn-primary">Update Product</button>
+                                            <button id="add_product" name="sale_product" class="btn btn-primary">Sale Product</button>
                                         </div>
                                     </div>
                                 </fieldset>

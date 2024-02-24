@@ -101,6 +101,7 @@
                                             <td>{{ $product->stock }}</td>
                                             <td>
                                                 <a href="{{ route('product.edit', $product->id) }}"><i class="fas fa-edit edit"></i></a>
+                                                <a href="{{ route('product.sales', $product->id) }}"><i class="fa-solid fa-cart-shopping"></i></a>
                                                 <i class="fa-solid fa-trash delete"></i>
                                             </td>
                                         </tr>
