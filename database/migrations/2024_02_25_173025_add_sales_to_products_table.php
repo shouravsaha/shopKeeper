@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            $table->integer('sale');
-            $table->timestamps();
+            $table->integer('sale')->nullable()->after('stock');
         });
     }
 
@@ -25,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
+            $table->dropColumn('sale');
         });
     }
 };
