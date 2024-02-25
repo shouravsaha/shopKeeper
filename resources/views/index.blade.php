@@ -78,6 +78,7 @@
                                             <th>Description</th>
                                             <th>Price</th>
                                             <th>Stock</th>
+                                            <th>Sale</th>
                                             <th>Action</th>
 
                                         </tr>
@@ -99,6 +100,7 @@
                                             <td>{{ $product->description }}</td>
                                             <td>{{ $product->price }}</td>
                                             <td>{{ $product->stock }}</td>
+                                            <td>{{ $product->sale }}</td>
                                             <td>
                                                 <a href="{{ route('product.edit', $product->id) }}"><i class="fas fa-edit edit"></i></a>
                                                 <a href="{{ route('product.sales', $product->id) }}"><i class="fa-solid fa-cart-shopping"></i></a>

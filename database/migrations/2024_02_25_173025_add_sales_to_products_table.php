@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            $table->integer('sale')->nullable()->after('stock');
+            $table->integer('sale')->default(0)->after('stock');
         });
     }
 
