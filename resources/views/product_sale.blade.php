@@ -73,14 +73,14 @@
                                     @endforeach
                                 </ul>
                             @endif
-                            <form class="form-control" action="{{ route('product.store') }}" method="post">
+                            <form class="form-control" action="{{ route('product.salesProcess') }}" method="post">
                             @csrf
                                 <fieldset>
                                     <!-- Text input-->
                                     <div class="form-group">
                                         <label class="control-label mb-2" for="product_name">Product Sale</label>
                                         <div class="mb-2">
-                                            <input id="product_name" name="product_sale" placeholder="Product Name" class="form-control" required="" type="text">
+                                            <input id="product_name" name="product_sale" placeholder="Product Sale" class="form-control" required="" type="number">
                                         </div>
                                     </div>
                                     <!-- Button -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
@@ -95,7 +96,24 @@ class ProductController extends Controller
         //
     }
 
-    public function sale($id){
+    public function sale(){
         return view('product_sale');
+    }
+
+    public function salesProcess(Request $request){
+        try {
+            $sales = $request->input('product_sale');
+            if(products::select('stock') >= $sales){
+                products::where('id')->increment('sale', $sales);
+                products::where('id')->decrement('stock', $sales);
+
+                    return redirect()->route('product.index');
+            }else{
+                return redirect()->back();
+            }
+        }catch(ModelNotFoundException $exception) {
+            return redirect()->back()->with('error', 'Product not found');
+        }
+
     }
 }
