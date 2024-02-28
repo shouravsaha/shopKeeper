@@ -12,11 +12,15 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-        $products = products::all();
-        return view('index', compact('products'));
+    // public function index()
+    // {
+    //     //
+    //     $products = products::all();
+    //     return view('index', compact('products'));
+    // }
+
+    public function index(){
+        return view('layouts.app');
     }
 
     /**
@@ -96,16 +100,16 @@ class ProductController extends Controller
         //
     }
 
-    public function sale(){
-        return view('product_sale');
+    public function showSale(){
+        return view('show_sale');
     }
 
     public function salesProcess(Request $request){
         try {
             $sales = $request->input('product_sale');
             if(products::select('stock') >= $sales){
-                products::where('id')->increment('sale', $sales);
-                products::where('id')->decrement('stock', $sales);
+                products::where('id')->increment('sale', $sales)->insert();
+                products::where('id')->decrement('stock', $sales)->insert();
 
                     return redirect()->route('product.index');
             }else{

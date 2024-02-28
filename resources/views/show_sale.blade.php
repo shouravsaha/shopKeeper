@@ -13,7 +13,7 @@
     </head>
     <body class="sb-nav-fixed">
 
-
+        @yield('navbar')
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
             <!-- Navbar Brand-->
